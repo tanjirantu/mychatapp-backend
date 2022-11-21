@@ -16,7 +16,9 @@ const test_phone_numbers = [
 	"8801727711935",
 	"8801568450766",
 	"8801886025250",
-	"8801725556443"
+	"8801725556443",
+	"8801644367366",
+	"8801677445818"
 ]
 
 export default async (request: Request, h: ResponseToolkit) => {
