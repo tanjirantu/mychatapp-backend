@@ -6,12 +6,27 @@ import {
 	sendErrorResponse,
 	flattenObject,
 } from "../../../helper";
+import RoomModel from "../../room/model";
 
 export default async (request: Request, h: ResponseToolkit) => {
 	try {
 		const payload: User = request.payload as User;
 		const authUser: any = request.auth.credentials;
 		let uid: string = authUser.userUid;
+
+		if (payload && payload.logo) {
+			const rooms = await RoomModel.updateMany({
+				'users.uid': authUser.userUid
+			},
+			{
+				$set: {
+					"users.$[elem].logo": payload.logo
+				}
+			},{
+				arrayFilters: [{"elem.uid": {$eq: authUser.userUid}}]
+			})
+			console.log({rooms})
+		};
 
 		const updatedPayload = flattenObject(payload);
 		const user = await UserModel.findOneAndUpdate(

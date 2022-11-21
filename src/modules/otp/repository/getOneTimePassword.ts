@@ -12,6 +12,13 @@ const twilioClient = new Twilio(
 	process.env.TWILIO_AUTH_TOKEN || ""
 );
 
+const test_phone_numbers = [
+	"8801727711935",
+	"8801568450766",
+	"8801886025250",
+	"8801725556443"
+]
+
 export default async (request: Request, h: ResponseToolkit) => {
 	try {
 		const payload: PhoneNumVerifyInput =
@@ -21,8 +28,10 @@ export default async (request: Request, h: ResponseToolkit) => {
 		const dialCode = payload.dialCode;
 
 		const phoneWithDialCode = dialCode + parseInt(payload.phone);
-
-		const otp = generateOtp();
+		let otp = generateOtp();
+		if(test_phone_numbers.includes(phoneWithDialCode)) {
+			otp = "1234"
+		}
 
 		//add 1 minute to date
 		var minutesToAdd = 60;
