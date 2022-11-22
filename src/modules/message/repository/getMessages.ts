@@ -14,7 +14,7 @@ export default async (request: Request, h: ResponseToolkit) => {
 		if (request.query.skip) skip = request.query.skip;
 		if (request.query.limit) limit = request.query.limit;
 
-		const findQuery = flattenObject({ roomUid: roomUid });
+		const findQuery = flattenObject({ roomUid: roomUid, isDeleted: false });
 
 		if (request.query && request.query.includeOnly) {
 			const fileTypes = request.query.includeOnly.split(",");

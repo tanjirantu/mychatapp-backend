@@ -13,7 +13,18 @@ const createRoom = {
 	},
 };
 
+const updateRoom = {
+	params: {
+		uid: Joi.string()
+	},
+	payload: {
+		label: Joi.string(),
+		users: Joi.array().items(Joi.string()).min(1).required(),
+	}
+}
+
 export default {
 	createRoom,
 	getRoomByUid,
+	updateRoom
 };

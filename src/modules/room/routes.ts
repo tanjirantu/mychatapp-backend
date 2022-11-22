@@ -1,4 +1,4 @@
-import { createRoom, getRoomByUid, getRooms } from "./repository";
+import { createRoom, getRoomByUid, getRooms, updateRoom } from "./repository";
 
 import validator from "./validator";
 
@@ -40,5 +40,18 @@ export default [
 			validate: validator.createRoom,
 		},
 		handler: createRoom,
+	},
+	{
+		method: "PUT",
+		path: "/rooms/{uid}",
+		options: {
+			auth: {
+				strategy: "jwt",
+			},
+			tags: ["Api", "Room"],
+			description: "Update room by Uid",
+			validate: validator.updateRoom,
+		},
+		handler: updateRoom,
 	},
 ];
