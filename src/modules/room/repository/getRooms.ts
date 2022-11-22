@@ -59,6 +59,7 @@ export default async (request: Request, h: ResponseToolkit) => {
 				$project: {
 					_id: 1,
 					uid: 1,
+					label: 1,
 					users: {
 						$filter: {
 							input: "$users",
