@@ -12,6 +12,13 @@ const getMessages = {
 	},
 };
 
+const deleteMessage = {
+	params: {
+		uid: Joi.string(),
+	}
+}
+
 export default {
 	getMessages,
+	deleteMessage
 };
