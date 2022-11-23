@@ -32,7 +32,7 @@ export default async (request: Request, h: ResponseToolkit) => {
 		);
 
 		const messages = await MessageModel.find(findQuery)
-			.sort({ _id: -1 })
+			.sort({ createdAt: 1 })
 			.skip(skip)
 			.limit(limit);
 
