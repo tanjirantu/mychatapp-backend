@@ -13,7 +13,7 @@ const twilioClient = new Twilio(
 );
 
 const test_phone_numbers = [
-	"8801727711935",
+	// "8801727711935",
 	"8801568450766",
 	"8801886025250",
 	"8801725556443",
@@ -49,17 +49,17 @@ export default async (request: Request, h: ResponseToolkit) => {
 			expiresAt,
 		});
 
-		// const response = await twilioClient.messages.create({
-		// 	body: `Your account verification code is: ${otp}`,
-		// 	from: process.env.TWILIO_PHONE_NUMBER || "+13344639271",
-		// 	to: `+${phoneWithDialCode}`,
-		// });
+		const response = await twilioClient.messages.create({
+			body: `Your account verification code is: ${otp}`,
+			from: process.env.TWILIO_PHONE_NUMBER || "+13344639271",
+			to: `+${phoneWithDialCode}`,
+		});
 
-		// if (!response) {
-		// 	return h
-		// 		.response(sendErrorResponse("COULD_NOT_SEND_SMS"))
-		// 		.code(200);
-		// }
+		if (!response) {
+			return h
+				.response(sendErrorResponse("COULD_NOT_SEND_SMS"))
+				.code(200);
+		}
 
 		console.log("Otp sent to phone.", otp);
 
