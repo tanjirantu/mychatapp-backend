@@ -18,8 +18,9 @@ const test_phone_numbers = [
 	"8801886025250",
 	"8801725556443",
 	"8801644367366",
-	"8801677445818"
-]
+	"8801677445818",
+	"8801568450766",
+];
 
 export default async (request: Request, h: ResponseToolkit) => {
 	try {
@@ -31,8 +32,8 @@ export default async (request: Request, h: ResponseToolkit) => {
 
 		const phoneWithDialCode = dialCode + parseInt(payload.phone);
 		let otp = generateOtp();
-		if(test_phone_numbers.includes(phoneWithDialCode)) {
-			otp = "1234"
+		if (test_phone_numbers.includes(phoneWithDialCode)) {
+			otp = "1234";
 		}
 
 		//add 1 minute to date
